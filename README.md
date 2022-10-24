@@ -4,14 +4,14 @@ A boilerplate to build and bundle Javascript code
 
 I have created this for all the next projects I will build soon.
 
-### About boilerplate
+## About boilerplate
 
 With webpack-boilerplate, we can:
 
 - Minimize HTML, CSS, Javascript file
 - Using babel to transform syntax (for older browser) and polyfills
 
-### What it can do
+## What it can do
 
 - [x] Load SCSS/SASS file and transpile them to CSS
 - [x] Optimize CSS file
@@ -20,7 +20,6 @@ With webpack-boilerplate, we can:
 - [ ] Use for multiple page application
 - [ ] Work with PugJS
 
-### Deploy
 
 ## Deployment
 
