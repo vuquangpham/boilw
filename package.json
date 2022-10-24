@@ -1,0 +1,43 @@
+{
+  "name": "webpack-boilerplate",
+  "version": "0.0.1",
+  "description": "A boilerplate to build and bundle Javascript code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config configs/webpack.dev.js",
+    "build:dev": "webpack --config configs/webpack.dev.js",
+    "build:prod": "webpack --config configs/webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuquangpham/webpack-boilerplate.git"
+  },
+  "keywords": [
+    "webpack",
+    "boilerplate"
+  ],
+  "author": "vuquangpham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vuquangpham/webpack-boilerplate/issues"
+  },
+  "homepage": "https://github.com/vuquangpham/webpack-boilerplate#readme",
+  "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "node-sass": "^7.0.3",
+    "sass-loader": "^13.1.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  }
+}
