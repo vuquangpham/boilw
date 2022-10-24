@@ -1,4 +1,5 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: path.resolve(__dirname, '../', 'src', '_index.js'),
@@ -10,47 +11,12 @@ module.exports = {
             assets: path.resolve(__dirname, '../', 'public', 'assets'),
         },
     },
-    module: {
-        rules: [
-            {
-                test: /\.m?js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['@babel/preset-env', {targets: "defaults"}]
-                        ],
-                        plugins: ['@babel/plugin-proposal-class-properties']
-                    }
-                }
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    // Creates `style` nodes from JS strings
-                    "style-loader",
-                    // Translates CSS into CommonJS
-                    "css-loader",
-                    // Compiles Sass to CSS
-                    "sass-loader",
-                ],
-            },
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: "html-loader",
-                    },
-                ],
-            },
-            {
-                test: /\.(jpe?g|png|gif|svg)$/,
-                type: "asset/resource",
-                generator: {
-                    filename: "img/[hash][ext]",
-                },
-            },
-        ],
-    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "css/[name].[contenthash].css",
+            chunkFilename: "[id].css",
+        }),
+    ],
 };
