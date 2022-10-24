@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-    entry: "/src/_index.js",
+    entry: path.resolve(__dirname, '../', 'src', '_index.js'),
     devtool: "inline-source-map",
     resolve: {
         extensions: ['.ts', '.js', '.json'],
