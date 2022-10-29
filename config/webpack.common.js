@@ -4,7 +4,6 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 module.exports = {
     entry: path.resolve(__dirname, '../', 'src', '_index.js'),
-    devtool: "inline-source-map",
     resolve: {
         extensions: ['.ts', '.js', '.json'],
         alias: {
@@ -44,6 +43,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../', 'public', 'index.html'),
             filename: 'index.html',
+            inject: 'head'
         }),
     ],
 };
