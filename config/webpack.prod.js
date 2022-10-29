@@ -15,6 +15,19 @@ module.exports = merge(common, {
     module: {
         rules: [
             {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            ['@babel/preset-env', {targets: "defaults"}]
+                        ],
+                        plugins: ['@babel/plugin-proposal-class-properties']
+                    }
+                }
+            },
+            {
                 test: /\.css$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -76,10 +89,11 @@ module.exports = merge(common, {
         ],
     },
     plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../', 'public', 'index.html'),
-            filename: 'index.html',
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "assets/css/[name].[contenthash].css",
+            chunkFilename: "[id].css",
         }),
     ],
 });
