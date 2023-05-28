@@ -1,25 +1,12 @@
-const path = require("path");
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+// config
+const config = require('./config');
 
+// export
 module.exports = {
-    entry: path.resolve(__dirname, '../', 'src', '_index.js'),
     resolve: {
         extensions: ['.ts', '.js', '.json'],
         alias: {
-            '@': path.resolve(__dirname, '../', 'src'),
-            assets: path.resolve(__dirname, '../', 'public', 'assets'),
+            '@': config.paths.srcDirectory,
         },
-    },
-    module: {
-        rules: [
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: "html-loader",
-                    },
-                ],
-            },
-        ]
     },
 };

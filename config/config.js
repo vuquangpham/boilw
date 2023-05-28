@@ -4,6 +4,13 @@ const path = require('path');
 // package
 const packageInfo = require('../package.json');
 
+// dist
+const distDirectory = path.join(__dirname, '..', 'dist');
+
+// dev direction
+const srcDirectory = path.join(__dirname, '..', 'src');
+const devDirectory = path.join(__dirname, '..', 'dev');
+
 // declare paths
 const productionDirectoryScript = path.join(__dirname, '..', 'src', '_index.js');
 const productionDirectoryStyle = path.join(__dirname, '..', 'src', '_index.scss');
@@ -39,7 +46,10 @@ module.exports = {
         productionDirectoryScript,
         productionDirectoryStyle,
         devDirectoryScript,
-        devDirectionStyle
+        devDirectionStyle,
+        distDirectory,
+        srcDirectory,
+        devDirectory
     },
 
     // package

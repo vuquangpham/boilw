@@ -1,15 +1,29 @@
-const path = require("path");
+// node packages
+const fs = require("fs");
+
+// webpack
 const common = require("./webpack.common");
 const {merge} = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
+// config
+const config = require('./config');
+
+// entry
+const entry = [config.paths.productionDirectoryScript];
+if(fs.existsSync(config.paths.productionDirectoryStyle)){
+    entry.push(config.paths.productionDirectoryStyle);
+}
+
+// export
 module.exports = merge(common, {
     mode: "production",
+    entry,
     output: {
-        filename: "assets/js/[name].[contenthash].js",
-        path: path.resolve(__dirname, '../', "dist"),
+        filename: `${config.packageInfo.packageName}.min.js`,
+        path: config.paths.distDirectory,
     },
     module: {
         rules: [
@@ -32,9 +46,7 @@ module.exports = merge(common, {
                     MiniCssExtractPlugin.loader,
                     {
                         loader: "css-loader",
-                        options: {
-                            sourceMap: false,
-                        },
+                        options: {sourceMap: false,},
                     },
                     {
                         loader: "postcss-loader",
@@ -86,15 +98,12 @@ module.exports = merge(common, {
         minimize: true,
         minimizer: [
             new CssMinimizerPlugin(),
-            new TerserPlugin(),
+            new TerserPlugin({extractComments: false}),
         ],
     },
     plugins: [
         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "assets/css/[name].[contenthash].css",
-            chunkFilename: "[id].css",
+            filename: `${config.packageInfo.packageName}.min.css`,
         }),
     ],
 });
