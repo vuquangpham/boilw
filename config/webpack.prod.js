@@ -2,11 +2,12 @@
 const fs = require("fs");
 
 // webpack
+const webpack = require('webpack');
 const common = require("./webpack.common");
 const {merge} = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 // config
 const config = require('./config');
@@ -24,6 +25,9 @@ module.exports = merge(common, {
     output: {
         filename: `${config.packageInfo.packageName}.min.js`,
         path: config.paths.distDirectory,
+    },
+    experiments: {
+        outputModule: true,
     },
     module: {
         rules: [
@@ -95,15 +99,15 @@ module.exports = merge(common, {
         ],
     },
     optimization: {
-        minimize: true,
         minimizer: [
-            new CssMinimizerPlugin(),
             new TerserPlugin({extractComments: false}),
         ],
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: `${config.packageInfo.packageName}.min.css`,
         }),
+        new webpack.BannerPlugin(config.packageInfo.packageBannerConfig)
     ],
 });

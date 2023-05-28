@@ -28,8 +28,8 @@ const packageLicense = packageInfo.license;
 
 // webpack banner
 const packageBannerConfig = {
-    banner: `
-/**!
+    banner:
+        `/**
  * ${packageName} v${packageVersion}
  * @author ${packageAuthor}
  * @homepage ${packageHomepage}
