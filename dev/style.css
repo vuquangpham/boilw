@@ -6,9 +6,21 @@
 
 html {
     font-size:62.5%;
+    font-family:"Open Sans", sans-serif;
 }
 
 body {
     box-sizing:border-box;
     min-height:100vh;
 }
+
+.container {
+    max-width:900px;
+    margin:10vh auto 0;
+}
+
+/* spacing */
+:is(h1, h2, h3, p):not(:last-child) {margin-bottom:1.6rem;}
+
+h1 {font-size:4rem;}
+p {font-size:1.8rem;}
