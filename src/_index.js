@@ -6,14 +6,6 @@ import {uid} from "./utils";
  * */
 const defaultOptions = {
     id: uid(),
-    duration: 300,
-    ease: 'linear',
-    onStart: (self) => {
-    },
-    onComplete: (self) => {
-    },
-    onUpdate: (self) => {
-    }
 };
 
 class Library{
