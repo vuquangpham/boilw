@@ -1,34 +1,44 @@
+// node packages
 const path = require("path");
+
+// webpack
 const common = require("./webpack.common");
 const {merge} = require("webpack-merge");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+// config
+const config = require('./config');
+
+// export
 module.exports = merge(common, {
     mode: "development",
+    entry: config.paths.devDirectoryScript,
     output: {
-        filename: "app.[contenthash].js",
-        path: path.resolve(__dirname, '../', "dist"),
+        path: config.paths.distDirectory,
     },
     devtool: "inline-source-map",
     devServer: {
         static: {
-            directory: path.resolve(__dirname, "dist"),
+            directory: config.paths.distDirectory,
             watch: true,
         },
         port: 3000,
         open: true,
-        watchFiles: ["./*", path.resolve(__dirname, '../', 'public', '*')],
+        watchFiles: ["./*", path.resolve(__dirname, '../', 'dev', '*')],
         hot: true,
     },
     module: {
         rules: [
-            {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
-            },
+            {test: /\.css$/i, use: ['style-loader', 'css-loader'],},
+            {test: /\.s[ac]ss$/i, use: ['style-loader', 'css-loader', 'sass-loader'],},
+            {test: /\.html$/, use: [{loader: "html-loader",},],},
         ],
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, '..', 'dev', 'index.html'),
+            filename: 'index.html',
+            inject: true,
+        }),
+    ]
 });

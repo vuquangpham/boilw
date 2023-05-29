@@ -1,16 +1,51 @@
-const path = require("path");
+// node packages
+const fs = require("fs");
+
+// webpack
+const webpack = require('webpack');
 const common = require("./webpack.common");
 const {merge} = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
+// config
+const config = require('./config');
+
+// entry
+const entry = [config.paths.productionDirectoryScript];
+if(fs.existsSync(config.paths.productionDirectoryStyle)){
+    entry.push(config.paths.productionDirectoryStyle);
+}
+
+/**
+ * Build type with ENV variables
+ * */
+const libraryTarget = process.env.TARGET;
+let filename, experiments = {}, library = undefined;
+
+if(libraryTarget === 'module'){
+    filename = `${config.packageInfo.packageName}.module.js`;
+    experiments = {
+        outputModule: true,
+    };
+}else{
+    filename = `${config.packageInfo.packageName}.min.js`;
+}
+
+// export
 module.exports = merge(common, {
     mode: "production",
+    entry,
     output: {
-        filename: "assets/js/[name].[contenthash].js",
-        path: path.resolve(__dirname, '../', "dist"),
+        filename,
+        library,
+        libraryTarget,
+        globalObject: 'this',
+        path: config.paths.distDirectory,
+        umdNamedDefine: true,
     },
+    experiments,
     module: {
         rules: [
             {
@@ -32,9 +67,7 @@ module.exports = merge(common, {
                     MiniCssExtractPlugin.loader,
                     {
                         loader: "css-loader",
-                        options: {
-                            sourceMap: false,
-                        },
+                        options: {sourceMap: false,},
                     },
                     {
                         loader: "postcss-loader",
@@ -83,18 +116,14 @@ module.exports = merge(common, {
         ],
     },
     optimization: {
-        minimize: true,
         minimizer: [
-            new CssMinimizerPlugin(),
-            new TerserPlugin(),
+            new TerserPlugin({extractComments: false}),
         ],
     },
     plugins: [
         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "assets/css/[name].[contenthash].css",
-            chunkFilename: "[id].css",
+            filename: `${config.packageInfo.packageName}.min.css`,
         }),
+        new webpack.BannerPlugin(config.packageInfo.packageBannerConfig)
     ],
 });
