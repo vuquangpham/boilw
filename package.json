@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config config/webpack.dev.js",
-    "build:dev": "webpack --config config/webpack.dev.js",
-    "build:prod": "webpack --config config/webpack.prod.js"
+    "build:umd": "cross-env TARGET=umd webpack --config config/webpack.prod.js",
+    "build:module": "cross-env TARGET=module webpack --config config/webpack.prod.js",
+    "build:prod": "npm run build:umd && npm run build:module"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "@babel/preset-env": "^7.19.4",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",

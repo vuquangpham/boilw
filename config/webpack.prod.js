@@ -18,17 +18,34 @@ if(fs.existsSync(config.paths.productionDirectoryStyle)){
     entry.push(config.paths.productionDirectoryStyle);
 }
 
+/**
+ * Build type with ENV variables
+ * */
+const libraryTarget = process.env.TARGET;
+let filename, experiments = {}, library = undefined;
+
+if(libraryTarget === 'module'){
+    filename = `${config.packageInfo.packageName}.module.js`;
+    experiments = {
+        outputModule: true,
+    };
+}else{
+    filename = `${config.packageInfo.packageName}.min.js`;
+}
+
 // export
 module.exports = merge(common, {
     mode: "production",
     entry,
     output: {
-        filename: `${config.packageInfo.packageName}.min.js`,
+        filename,
+        library,
+        libraryTarget,
+        globalObject: 'this',
         path: config.paths.distDirectory,
+        umdNamedDefine: true,
     },
-    experiments: {
-        outputModule: true,
-    },
+    experiments,
     module: {
         rules: [
             {
@@ -104,7 +121,6 @@ module.exports = merge(common, {
         ],
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: `${config.packageInfo.packageName}.min.css`,
         }),
