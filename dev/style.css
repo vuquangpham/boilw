@@ -20,7 +20,9 @@ body {
 }
 
 /* spacing */
+section:not(:last-child) {margin-bottom:2rem;}
 :is(h1, h2, h3, p):not(:last-child) {margin-bottom:1.6rem;}
 
+/* text */
 h1 {font-size:4rem;}
 p {font-size:1.8rem;}
