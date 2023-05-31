@@ -12,7 +12,6 @@ class Library{
     constructor(target, options){
         this._attr = {};
         this._class = {
-            enabled: 'smoothjs-enabled',
         };
 
         // validate target
