@@ -1,3 +1,7 @@
+// style
+import './_index.scss';
+
+// script
 import {init, validateTarget} from "./helpers";
 import {uid} from "./utils";
 
@@ -11,8 +15,7 @@ const defaultOptions = {
 class Library{
     constructor(target, options){
         this._attr = {};
-        this._class = {
-        };
+        this._class = {};
 
         // validate target
         this.target = validateTarget(target);

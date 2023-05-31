@@ -1,5 +1,5 @@
 // style
-import './style.css';
+import './style.scss';
 
 // library
 import '@/_index.js';

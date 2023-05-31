@@ -1,15 +1,16 @@
 // webpack
-const webpack = require('webpack');
 const common = require("./webpack.common");
 const {merge} = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // config
 const config = require('./config');
+const path = require("path");
 
 // entry
-const entry = [config.paths.productionDirectoryScript];
+const entry = [config.paths.devDirectoryScript];
 
 /**
  * Build type with ENV variables
@@ -106,7 +107,15 @@ module.exports = merge(common, {
                     },
                 ],
             },
-        ],
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader",
+                    },
+                ],
+            },
+        ]
     },
     optimization: {
         minimizer: [
@@ -117,6 +126,10 @@ module.exports = merge(common, {
         new MiniCssExtractPlugin({
             filename: `${config.packageInfo.packageName}.min.css`,
         }),
-        new webpack.BannerPlugin(config.packageInfo.packageBannerConfig)
+        new HtmlWebpackPlugin({
+            template: path.join(config.paths.devDirectory, 'index.html'),
+            filename: 'index.html',
+            inject: 'head'
+        }),
     ],
 });
