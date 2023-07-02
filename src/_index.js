@@ -19,7 +19,7 @@ class Library{
 
         // validate target
         this.target = validateTarget(target);
-        if(!target) return;
+        if(!this.target) return;
 
         // options
         this.options = {
