@@ -12,5 +12,5 @@ const dataTitles = document.querySelectorAll('[data-title]');
 const dataDescriptions = document.querySelectorAll('[data-description]');
 
 // update information
-dataTitles.forEach(e => e.innerHTML = packageInfo.name);
+dataTitles.forEach(e => e.innerHTML = packageInfo["project-name"]);
 dataDescriptions.forEach(e => e.innerHTML = packageInfo.description);

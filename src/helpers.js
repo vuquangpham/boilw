@@ -28,5 +28,4 @@ export function validateTarget(target){
  * Init options
  * */
 export function init(context){
-
 }

@@ -1,5 +1,6 @@
 {
   "name": "webpack-boilerplate",
+  "project-name": "Webpack Boilerplate",
   "version": "0.0.1",
   "description": "A boilerplate for creating a library with Javascript",
   "main": "./dist/webpack-boilerplate.min.js",
