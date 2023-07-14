@@ -1,4 +1,6 @@
-# Webpack-boilerplate
+# Boilw Template
+
+> Creating Javascript library on the fly 💫
 
 ## Deployment
 
