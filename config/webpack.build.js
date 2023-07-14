@@ -19,12 +19,12 @@ const libraryTarget = process.env.TARGET;
 let filename, experiments = {}, library = undefined;
 
 if(libraryTarget === 'module'){
-    filename = `${config.packageInfo.packageName}.module.js`;
+    filename = `${config.packageInfo.outputName}.module.js`;
     experiments = {
         outputModule: true,
     };
 }else{
-    filename = `${config.packageInfo.packageName}.min.js`;
+    filename = `${config.packageInfo.outputName}.min.js`;
 }
 
 // export
