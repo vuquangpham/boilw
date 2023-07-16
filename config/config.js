@@ -25,7 +25,7 @@ const packageVersion = packageInfo.version;
 const packageAuthor = packageInfo.author.name;
 const packageHomepage = packageInfo.homepage;
 const packageLicense = packageInfo.license;
-const packageOutputName = packageInfo['output-name'];
+const packageOutputName = packageInfo.outputName;
 
 // webpack banner
 const packageBannerConfig = {

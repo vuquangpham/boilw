@@ -1,7 +1,7 @@
 {
   "name": "boilw",
   "prettyName": "Boilw Template",
-  "output-name": "boilw",
+  "outputName": "boilw",
   "version": "0.0.1",
   "description": "A boilerplate for creating a library with Javascript",
   "main": "./dist/boilw.min.js",
