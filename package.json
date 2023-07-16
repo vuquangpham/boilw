@@ -1,6 +1,6 @@
 {
   "name": "boilw",
-  "project-name": "Boilw Template",
+  "prettyName": "Boilw Template",
   "output-name": "boilw",
   "version": "0.0.1",
   "description": "A boilerplate for creating a library with Javascript",
