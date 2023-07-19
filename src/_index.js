@@ -2,70 +2,53 @@
 import './_index.scss';
 
 // script
-import {init, validateTarget} from "./helpers";
+import {validateTarget} from "./helpers";
 import {uid} from "./utils";
 
 /**
  * Private class
  * */
-const defaultOptions = {
-    id: uid(),
-};
-
 class Library{
-    constructor(target, options){
-        this._attr = {};
-        this._class = {};
-
-        // validate target
-        this.target = validateTarget(target);
-        if(!this.target) return;
-
-        // options
-        this.options = {
-            ...defaultOptions,
-            ...options
-        };
-
-        init(this);
-    }
-}
-
-
-/**
- * Controller
- * */
-class LibraryController{
     constructor(){
+        // instances
         this.instances = [];
     }
 
-    add(instance = {}){
-        if(this.instances.find(i => i.id !== instance.id)){
-            this.instances.push(instance);
-            return instance;
-        }
-        return null;
+    create(options){
+        const instance = {
+            id: uid(),
+            target: null,
+            ...options
+        };
+        instance.target = validateTarget(instance.target);
+        if(!instance.target) return null;
     }
 
     get(id){
-        return this.instances.find(i => i.id === id);
+        // matched condition
+        const isMatched = (i) => i.id === id;
+        return this.instances.find(isMatched);
+    }
+
+    destroy(instance){
+        // matched condition
+        const isMatched = (i) => i.id === instance.id;
+
+        const result = this.instances.find(isMatched);
+        if(result){
+            const index = this.instances.findIndex(isMatched);
+
+            // remove from instances
+            this.instances.splice(index, 1);
+
+            return true;
+        }
+        return false;
     }
 }
-
-
-/**
- * Public library controller
- * */
-window.LibraryController = new LibraryController();
 
 
 /**
  * Public library
  * */
-window.Library = {
-    init: (target, options = {}) => {
-        return window.LibraryController.add(new Library(target, options));
-    },
-    get: (id) => window.LibraryController.get(id)
-};
+window.Library = new Library();
