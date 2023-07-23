@@ -14,3 +14,5 @@ const dataDescriptions = document.querySelectorAll('[data-description]');
 // update information
 dataTitles.forEach(e => e.innerHTML = packageInfo["prettyName"]);
 dataDescriptions.forEach(e => e.innerHTML = packageInfo.description);
+
+// custom code
