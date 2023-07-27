@@ -7,7 +7,7 @@
   "main": "./dist/boilw.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config config/webpack.dev.js",
+    "dev": "webpack-dev-server --host=0.0.0.0 --config config/webpack.dev.js",
     "build:umd": "cross-env TARGET=umd webpack --config config/webpack.prod.js",
     "build:module": "cross-env TARGET=module webpack --config config/webpack.prod.js",
     "build": "webpack --config config/webpack.build.js",
