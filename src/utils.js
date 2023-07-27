@@ -111,6 +111,6 @@ export function mapNumber(number, inMin, inMax, outMin, outMax){
  * @param max
  * @return number
  * */
-export function clamp(number, min, max){
+export function clamp(min, number, max){
     return Math.max(min, Math.min(number, max));
 }
