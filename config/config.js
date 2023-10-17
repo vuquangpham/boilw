@@ -82,6 +82,12 @@ const webpackHTMLConfig = new HtmlWebpackPlugin({
  * */
 const webpackModuleConfig = {
     rules: [
+
+        {
+            test: /\.html$/i,
+            loader: "html-loader",
+        },
+
         {
             test: /\.m?js$/,
             exclude: /node_modules/,
