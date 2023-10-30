@@ -35,15 +35,17 @@ class Library{
         const isMatched = (i) => i.id === instance.id;
 
         const result = this.instances.find(isMatched);
-        if(result){
-            const index = this.instances.findIndex(isMatched);
 
-            // remove from instances
-            this.instances.splice(index, 1);
+        // instance doesn't exist
+        if(!result) return false;
 
-            return true;
-        }
-        return false;
+        // remove the instance
+        const index = this.instances.findIndex(isMatched);
+
+        // remove from instances
+        this.instances.splice(index, 1);
+
+        return true;
     }
 }
 
