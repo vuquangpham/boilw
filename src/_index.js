@@ -4,6 +4,7 @@ import './_index.scss';
 // script
 import {validateTarget} from "./helpers";
 import {uid} from "./utils";
+import Instance from "./instance";
 
 /**
  * Private class
@@ -22,6 +23,12 @@ class Library{
         };
         validateOptions.target = validateTarget(validateOptions.target);
         if(!validateOptions.target) return null;
+
+        // init new instance
+        const instance = new Instance(validateOptions);
+        this.instances.push(instance);
+
+        return instance;
     }
 
     get(id){
