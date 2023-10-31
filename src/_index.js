@@ -15,13 +15,13 @@ class Library{
     }
 
     create(options){
-        const instance = {
+        const validateOptions = {
             id: uid(),
             target: null,
             ...options
         };
-        instance.target = validateTarget(instance.target);
-        if(!instance.target) return null;
+        validateOptions.target = validateTarget(validateOptions.target);
+        if(!validateOptions.target) return null;
     }
 
     get(id){
