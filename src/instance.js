@@ -6,6 +6,10 @@ export default class Instance{
 
         // events emitter
         this.events = new EventEmitter();
+
+        // event listeners for destroy method
+        // contains: name, target, handler
+        this.eventListeners = [];
     }
 
 
@@ -24,6 +28,12 @@ export default class Instance{
      * Destroy the instance
      * */
     destroy(){
+
+        // kill the event listener
+        this.eventListeners.forEach(event => {
+            event.target.removeEventListener(event.name, event.handler);
+        });
+
         return Library.destroy(this);
     }
 }
