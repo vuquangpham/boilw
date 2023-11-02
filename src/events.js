@@ -3,8 +3,12 @@ export default class EventEmitter{
         this.callbacks = {};
     }
 
+
     /**
      * Register callback into correspond event (based on event names)
+     * @param _names {String}
+     * @param callback {Function}
+     * @return {Object}
      * */
     on(_names, callback){
         // errors
@@ -35,8 +39,11 @@ export default class EventEmitter{
         return this;
     }
 
+
     /**
-     *
+     * Destroy the callback with the corresponding event name
+     * @param _names {String}
+     * @return {Object}
      * */
     off(_names){
         // errors
@@ -57,6 +64,12 @@ export default class EventEmitter{
         return this;
     }
 
+
+    /**
+     * Trigger the event with the name
+     * @param _names {String}
+     * @param _args {Array}
+     * */
     trigger(_names, _args){
         // Errors
         if(typeof _names === 'undefined' || _names === ''){
@@ -80,16 +93,18 @@ export default class EventEmitter{
         });
     }
 
+
     /**
      * Separate string with spacing and special characters into array
      * "Jane,,,,, Mary" => [Jane, Mary]
+     * @param _names {String}
+     * @return {Array}
      * */
     resolveNames(_names){
         let names = _names;
         names = names.replace(/[^a-zA-Z0-9 ,/.]/g, '');
         names = names.replace(/[,/]+/g, ' ');
-        names = names.split(' ');
 
-        return names;
+        return names.split(' ');
     }
 }
