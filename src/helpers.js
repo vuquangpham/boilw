@@ -1,6 +1,6 @@
 /**
  * Validate DOM element
- * @param {string || object} target
+ * @param {HTMLElement | String} target
  * @return {object || boolean}
  * */
 export function validateTarget(target){

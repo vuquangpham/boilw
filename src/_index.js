@@ -16,18 +16,20 @@ class Library{
     }
 
     create(options){
-        const validateOptions = {
+        const validatedOptions = {
             id: uid(),
             target: null,
             ...options
         };
-        validateOptions.target = validateTarget(validateOptions.target);
-        if(!validateOptions.target) return null;
+        validatedOptions.target = validateTarget(validatedOptions.target);
+        if(!validatedOptions.target) return null;
 
         // init new instance
-        const instance = new Instance(validateOptions);
-        this.instances.push(instance);
+        const instance = new Instance(validatedOptions);
+        if(!instance) return null;
 
+        // add new instance
+        this.instances.push(instance);
         return instance;
     }
 

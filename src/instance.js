@@ -1,8 +1,16 @@
 import EventEmitter from "./events";
+import {INSTANCE_CLASSES} from "./configs";
 
 export default class Instance{
     constructor(options){
         this.options = options;
+        this.target = options.target;
+
+        // already initialized
+        if(this.target.classList.contains(INSTANCE_CLASSES.enabled)){
+            console.error('The target has already initialized!');
+            return null;
+        }
 
         // events emitter
         this.events = new EventEmitter();
@@ -10,6 +18,9 @@ export default class Instance{
         // event listeners for destroy method
         // contains: name, target, handler
         this.eventListeners = [];
+
+        // add enabled class
+        this.target.classList.add(INSTANCE_CLASSES.enabled);
     }
 
 
@@ -33,6 +44,9 @@ export default class Instance{
         this.eventListeners.forEach(event => {
             event.target.removeEventListener(event.name, event.handler);
         });
+
+        // remove enabled class
+        this.target.classList.remove(INSTANCE_CLASSES.enabled);
 
         return Library.destroy(this);
     }
