@@ -1,5 +1,6 @@
 import EventEmitter from "./events";
 import {INSTANCE_CLASSES} from "./configs";
+import {init} from "./helpers";
 
 export default class Instance{
     constructor(options){
@@ -18,6 +19,10 @@ export default class Instance{
         // event listeners for destroy method
         // contains: name, target, handler
         this.eventListeners = [];
+
+        // init
+        this.hasInitialized = init(this);
+        if(!this.hasInitialized) return null;
 
         // add enabled class
         this.target.classList.add(INSTANCE_CLASSES.enabled);

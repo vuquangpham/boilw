@@ -26,6 +26,9 @@ export function validateTarget(target){
 
 /**
  * Init options
+ * @param context {Object}
+ * @return {Boolean}
  * */
 export function init(context){
+    return true;
 }
