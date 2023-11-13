@@ -114,3 +114,25 @@ export function mapNumber(number, inMin, inMax, outMin, outMax){
 export function clamp(min, number, max){
     return Math.max(min, Math.min(number, max));
 }
+
+
+/**
+ * Set CSS property for DOM Element
+ * @param element {Element}
+ * @param cssObject {Object}
+ * @return {void}
+ * */
+export function setCSS(element, cssObject){
+    if(!element || !cssObject) return;
+    Object.assign(element.style, cssObject);
+}
+
+
+/**
+ * Is a function
+ * @param fn {Function}
+ * @return {Boolean}
+ * */
+export function isFunction(fn){
+    return typeof fn === "function";
+}
