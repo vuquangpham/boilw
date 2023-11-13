@@ -118,7 +118,7 @@ export function clamp(min, number, max){
 
 /**
  * Set CSS property for DOM Element
- * @param element {Element}
+ * @param element {HTMLElement}
  * @param cssObject {Object}
  * @return {void}
  * */
