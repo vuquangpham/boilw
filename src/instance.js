@@ -13,16 +13,16 @@ export default class Instance{
             return null;
         }
 
+        // init
+        this.hasInitialized = init(this);
+        if(!this.hasInitialized) return null;
+
         // events emitter
         this.events = new EventEmitter();
 
         // event listeners for destroy method
         // contains: name, target, handler
         this.eventListeners = [];
-
-        // init
-        this.hasInitialized = init(this);
-        if(!this.hasInitialized) return null;
 
         // add enabled class
         this.target.classList.add(INSTANCE_CLASSES.enabled);
