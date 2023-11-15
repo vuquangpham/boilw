@@ -187,6 +187,7 @@ module.exports = {
                 '@': srcDirectory,
             },
         },
+        stats: 'minimal',
     },
 
     // module
