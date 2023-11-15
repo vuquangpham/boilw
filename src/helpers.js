@@ -30,5 +30,9 @@ export function validateTarget(target){
  * @return {Boolean}
  * */
 export function init(context){
+
+    // validate the id
+    context.id = context.options.id;
+
     return true;
 }
