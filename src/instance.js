@@ -23,7 +23,7 @@ export default class Instance{
 
         // event listeners for destroy method
         // contains: name, target, handler
-        this.eventListeners = new Listeners();
+        this.listeners = new Listeners();
 
         // add enabled class
         this.target.classList.add(INSTANCE_CLASSES.enabled);
