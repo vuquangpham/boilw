@@ -47,9 +47,7 @@ export default class Instance{
     destroy(){
 
         // kill the event listener
-        this.eventListeners.forEach(event => {
-            event.target.removeEventListener(event.name, event.handler);
-        });
+        this.listeners.destroyAll();
 
         // remove enabled class
         this.target.classList.remove(INSTANCE_CLASSES.enabled);
