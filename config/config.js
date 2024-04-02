@@ -185,6 +185,7 @@ module.exports = {
     globalObject: "this",
     path: distDirectory,
     umdNamedDefine: true,
+    clean: true,
   },
 
   // plugins
